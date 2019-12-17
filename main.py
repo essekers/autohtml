@@ -25,6 +25,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         text = self.textEdit.toPlainText() # Передаем в переменную text то что пользователь ввел в поле
 
         openfile = 'QTextDocument.txt'
+        
         fSave = open(openfile, 'w') # Создаем текстовый документ
         fSave.write(text) # записывем в файл текст
         fSave.close() # Закрываем файл
