@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys  # sys нужен для передачи argv в QApplication
 import os  # Отсюда нам понадобятся методы для отображения содержимого директорий
 import re
