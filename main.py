@@ -24,18 +24,19 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
 
         text = self.textEdit.toPlainText() # Передаем в переменную text то что пользователь ввел в поле
 
-        fSave = open('QTextDocument.txt', 'w') # Создаем текстовый документ
+        openfile = 'QTextDocument.txt'
+        fSave = open(openfile, 'w') # Создаем текстовый документ
         fSave.write(text) # записывем в файл текст
         fSave.close() # Закрываем файл
 
-        with open('QTextDocument.txt') as f:
+        with open(openfile) as f:
             content = f.readlines()
 
-        with open('QTextDocument.txt', 'w') as f:
+        with open(openfile, 'w') as f:
             for line in content:
                 f.write('<p>' + line.strip() + '</p>\n')
 
-        with open ('QTextDocument.txt', 'r') as f:
+        with open (openfile, 'r') as f:
             old_text = f.read()
 
         new_text = old_text\
@@ -43,10 +44,10 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         .replace('</p></p>', '</p>')
 
 
-        with open ('QTextDocument.txt', 'w') as f:
+        with open (openfile, 'w') as f:
             f.write(new_text)
 
-        textOpen = open('QTextDocument.txt')
+        textOpen = open(openfile)
 
 
         self.textEdit_2.insertPlainText(textOpen.read())
