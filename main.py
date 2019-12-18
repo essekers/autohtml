@@ -33,40 +33,50 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def verstat(self):
 
         # Передаем в переменную text то что пользователь ввел в поле
-        text = self.textEdit.toPlainText()
+        textUser = self.textEdit.toPlainText()
 
-        openfile = 'QTextDocument.txt'
+        text = textUser.split('\n')
 
-        # Создаем текстовый документ
-        fSave = open(openfile, 'w')
+        for textline in text:
+            textResult = f'<p>{textline}</p>\n'
+            self.textEdit_2.insertPlainText(textResult)
 
-        # записывем в файл текст
-        fSave.write(text)
+        # print(textUser)
 
-        # Закрываем файл
-        fSave.close()
 
-        with open(openfile) as f:
-            content = f.readlines()
 
-        with open(openfile, 'w') as f:
-            for line in content:
-                f.write('<p>' + line.strip() + '</p>\n')
-
-        with open(openfile, 'r') as f:
-            old_text = f.read()
-
-        new_text = old_text\
-            .replace('<p><p>', '<p>').replace('</p></p>', '</p>')
-
-        with open(openfile, 'w') as f:
-            f.write(new_text)
-
-        textOpen = open(openfile)
-
-        self.textEdit_2.insertPlainText(textOpen.read())
-
-        textOpen.close()
+        # openfile = 'QTextDocument.txt'
+        #
+        # # Создаем текстовый документ
+        # fSave = open(openfile, 'w')
+        #
+        # # записывем в файл текст
+        # fSave.write(text)
+        #
+        # # Закрываем файл
+        # fSave.close()
+        #
+        # with open(openfile) as f:
+        #     content = f.readlines()
+        #
+        # with open(openfile, 'w') as f:
+        #     for line in content:
+        #         f.write('<p>' + line.strip() + '</p>\n')
+        #
+        # with open(openfile, 'r') as f:
+        #     old_text = f.read()
+        #
+        # new_text = old_text\
+        #     .replace('<p><p>', '<p>').replace('</p></p>', '</p>')
+        #
+        # with open(openfile, 'w') as f:
+        #     f.write(new_text)
+        #
+        # textOpen = open(openfile)
+        #
+        # self.textEdit_2.insertPlainText(textOpen.read())
+        #
+        # textOpen.close()
 
 # self.textEdit_2.setText(a) # Выводим текст пользователя в колонку результат
 
