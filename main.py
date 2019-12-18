@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 
-import sys  # sys нужен для передачи argv в QApplication
-import os  # Отсюда нам понадобятся методы для отображения содержимого директорий
+# sys нужен для передачи argv в QApplication
+import sys
+
+# Отсюда нам понадобятся методы для отображения содержимого директорий
+import os
+
 import re
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QPushButton, QTextEdit, QApplication
 from PyQt5.QtGui import QIcon, QClipboard
 
-import design  # Это наш конвертированный файл дизайна
+# Это наш конвертированный файл дизайна
+import design
 
 
 class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
@@ -16,19 +21,30 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         # Это здесь нужно для доступа к переменным, методам
         # и т.д. в файле design.py
         super().__init__()
-        self.setupUi(self)  # Это нужно для инициализации нашего дизайна
+
+        # Это нужно для инициализации нашего дизайна
+        self.setupUi(self)
+
         self.addToClipBoard()
-        self.pushButton_2.clicked.connect(self.verstat) # Кнопка для верстки текста
+
+        # Кнопка для верстки текста
+        self.pushButton_2.clicked.connect(self.verstat)
 
     def verstat(self):
 
-        text = self.textEdit.toPlainText() # Передаем в переменную text то что пользователь ввел в поле
+        # Передаем в переменную text то что пользователь ввел в поле
+        text = self.textEdit.toPlainText()
 
         openfile = 'QTextDocument.txt'
-        
-        fSave = open(openfile, 'w') # Создаем текстовый документ
-        fSave.write(text) # записывем в файл текст
-        fSave.close() # Закрываем файл
+
+        # Создаем текстовый документ
+        fSave = open(openfile, 'w')
+
+        # записывем в файл текст
+        fSave.write(text)
+
+        # Закрываем файл
+        fSave.close()
 
         with open(openfile) as f:
             content = f.readlines()
@@ -37,27 +53,22 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
             for line in content:
                 f.write('<p>' + line.strip() + '</p>\n')
 
-        with open (openfile, 'r') as f:
+        with open(openfile, 'r') as f:
             old_text = f.read()
 
         new_text = old_text\
-        .replace('<p><p>', '<p>')\
-        .replace('</p></p>', '</p>')
+            .replace('<p><p>', '<p>').replace('</p></p>', '</p>')
 
-
-        with open (openfile, 'w') as f:
+        with open(openfile, 'w') as f:
             f.write(new_text)
 
         textOpen = open(openfile)
-
 
         self.textEdit_2.insertPlainText(textOpen.read())
 
         textOpen.close()
 
-
-
-        # self.textEdit_2.setText(a) # Выводим текст пользователя в колонку результат
+# self.textEdit_2.setText(a) # Выводим текст пользователя в колонку результат
 
     def addToClipBoard(self):
         self.pushButton_3.clicked.connect(self.ClipBoard)
