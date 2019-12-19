@@ -51,8 +51,7 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
             else:
                 textline = f'<p>{textline}</p>\n'
 
-
-
+            textline = re.sub(r'#..|[*].', r'', textline)
 
             self.textEdit_2.insertPlainText(textline)
 
