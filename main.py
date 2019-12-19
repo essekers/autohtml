@@ -48,7 +48,6 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 textline = f'<h4>{textline}</h4>\n'
             elif textline.find('* ') != -1:
                 textline = f'<li>{textline}</li>\n'
-                
             else:
                 textline = f'<p>{textline}</p>\n'
 
@@ -56,44 +55,6 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
             textline = re.sub(r'(\<li\>(.*?)\<\/li\>*)+', f'<ul>\n{textline}</ul>' ,textline)
 
             self.textEdit_2.insertPlainText(textline)
-
-
-
-
-        # openfile = 'QTextDocument.txt'
-        #
-        # # Создаем текстовый документ
-        # fSave = open(openfile, 'w')
-        #
-        # # записывем в файл текст
-        # fSave.write(text)
-        #
-        # # Закрываем файл
-        # fSave.close()
-        #
-        # with open(openfile) as f:
-        #     content = f.readlines()
-        #
-        # with open(openfile, 'w') as f:
-        #     for line in content:
-        #         f.write('<p>' + line.strip() + '</p>\n')
-        #
-        # with open(openfile, 'r') as f:
-        #     old_text = f.read()
-        #
-        # new_text = old_text\
-        #     .replace('<p><p>', '<p>').replace('</p></p>', '</p>')
-        #
-        # with open(openfile, 'w') as f:
-        #     f.write(new_text)
-        #
-        # textOpen = open(openfile)
-        #
-        # self.textEdit_2.insertPlainText(textOpen.read())
-        #
-        # textOpen.close()
-
-# self.textEdit_2.setText(a) # Выводим текст пользователя в колонку результат
 
     def addToClipBoard(self):
         self.pushButton_3.clicked.connect(self.ClipBoard)
