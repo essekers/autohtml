@@ -48,14 +48,15 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 textline = f'<h4>{textline}</h4>\n'
             elif textline.find('* ') != -1:
                 textline = f'<li>{textline}</li>\n'
+                
             else:
                 textline = f'<p>{textline}</p>\n'
 
             textline = re.sub(r'#..|[*].', r'', textline)
+            textline = re.sub(r'(\<li\>(.*?)\<\/li\>*)+', f'<ul>\n{textline}</ul>' ,textline)
 
             self.textEdit_2.insertPlainText(textline)
 
-        # print(textUser)
 
 
 
