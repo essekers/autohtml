@@ -38,8 +38,23 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         text = textUser.split('\n')
 
         for textline in text:
-            textResult = f'<p>{textline}</p>\n'
-            self.textEdit_2.insertPlainText(textResult)
+            if textline.find('#1 ') != -1:
+                textline = f'<h1>{textline}</h1>\n'
+            elif textline.find('#2 ') != -1:
+                textline = f'<h2>{textline}</h2>\n'
+            elif textline.find('#3 ') != -1:
+                textline = f'<h3>{textline}</h3>\n'
+            elif textline.find('#4 ') != -1:
+                textline = f'<h4>{textline}</h4>\n'
+            elif textline.find('* ') != -1:
+                textline = f'<li>{textline}</li>\n'
+            else:
+                textline = f'<p>{textline}</p>\n'
+
+
+
+
+            self.textEdit_2.insertPlainText(textline)
 
         # print(textUser)
 
